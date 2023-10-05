@@ -1,0 +1,32 @@
+{
+  "name": "ashlin-react/ashlin-react",
+  "description": "A WordPress plugin with react UI at back-end",
+  "homepage": "https://github.com/AshlinRejo",
+  "license": "GPL-2.0+",
+  "authors": [
+	{
+	  "name": "Ashlin Rejo",
+	  "email": "ashlinrejo1@gmail.com",
+	  "homepage": "https://github.com/AshlinRejo"
+	}
+  ],
+  "require-dev": {
+	"wp-coding-standards/wpcs": "^3.0",
+	"yoast/phpunit-polyfills": "^2.0",
+    "phpunit/phpunit": "^9.6"
+  },
+  "autoload": {
+	"psr-4": {
+	  "AshlinReact\\": "src/"
+	}
+  },
+  "autoload-dev": {},
+  "scripts": {
+	"make-pot": "wp i18n make-pot . languages/ashlin-react.pot --skip-js --exclude=vendor --domain=ashlin-react"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
