@@ -18,7 +18,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+	exit;
 }
 
 define( 'ASHLIN_REACT_PATH', realpath( plugin_dir_path( __FILE__ ) ) . '/' );
@@ -29,13 +29,13 @@ require ASHLIN_REACT_PATH . 'inc/ashlin-react-requirement-checks.php';
 
 // Checks plugin requirement.
 if ( ( new Ashlin_React_Requirement_Checks() )->check() ) {
-    // Composer autoload.
-    if ( file_exists( ASHLIN_REACT_PATH . 'vendor/autoload.php' ) ) {
-        require ASHLIN_REACT_PATH . 'vendor/autoload.php';
-    }
+	// Composer autoload.
+	if ( file_exists( ASHLIN_REACT_PATH . 'vendor/autoload.php' ) ) {
+		require ASHLIN_REACT_PATH . 'vendor/autoload.php';
+	}
 
-    // while activate plugin.
-    register_activation_hook( __FILE__, array( AshlinReact\Plugin::instance(), 'plugin_activated' ) );
+	// while activate plugin.
+	register_activation_hook( __FILE__, array( AshlinReact\Plugin::instance(), 'plugin_activated' ) );
 
-    add_action( 'plugins_loaded', array( AshlinReact\Plugin::instance(), 'load' ) );
+	add_action( 'plugins_loaded', array( AshlinReact\Plugin::instance(), 'load' ) );
 }

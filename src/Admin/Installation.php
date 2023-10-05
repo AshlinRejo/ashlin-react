@@ -30,6 +30,5 @@ class Installation {
 	 * Add default option values if required
 	 * */
 	private function add_default_options() {
-
 	}
 }

@@ -23,7 +23,7 @@ class Ashlin_React_Requirement_Checks {
 		if ( $this->is_valid_php() && $this->is_valid_wordpress() ) {
 			return true;
 		} else {
-            add_action( 'admin_notices', array( $this, 'display_notice' ) );
+			add_action( 'admin_notices', array( $this, 'display_notice' ) );
 			return false;
 		}
 	}

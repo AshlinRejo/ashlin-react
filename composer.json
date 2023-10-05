@@ -22,7 +22,9 @@
   },
   "autoload-dev": {},
   "scripts": {
-	"make-pot": "wp i18n make-pot . languages/ashlin-react.pot --skip-js --exclude=vendor --domain=ashlin-react"
+	"make-pot": "wp i18n make-pot . languages/ashlin-react.pot --skip-js --exclude=vendor --domain=ashlin-react",
+    "phpcs": "vendor/bin/phpcs",
+    "phpcs:fix": "vendor/bin/phpcbf"
   },
   "config": {
     "allow-plugins": {
