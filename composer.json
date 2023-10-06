@@ -24,7 +24,10 @@
   "scripts": {
 	"make-pot": "wp i18n make-pot . languages/ashlin-react.pot --skip-js --exclude=vendor --domain=ashlin-react",
     "phpcs": "vendor/bin/phpcs",
-    "phpcs:fix": "vendor/bin/phpcbf"
+    "phpcs:fix": "vendor/bin/phpcbf",
+    "stylelint": "stylelint 'assets/css/*'",
+    "stylelint:fix": "npm run stylelint -- --fix",
+    "precommit": "composer run-script phpcs:fix && composer run-script stylelint:fix"
   },
   "config": {
     "allow-plugins": {

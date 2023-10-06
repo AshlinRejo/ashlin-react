@@ -21,7 +21,15 @@ class Page {
 	 * */
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	/**
+	 * Include CSS files
+	 * */
+	public function enqueue_styles() {
+		wp_enqueue_style( 'ashlin-react', ASHLIN_REACT_URL . 'assets/css/admin.css', array(), ASHLIN_REACT_VERSION, 'all' );
 	}
 
 	/**
@@ -33,7 +41,10 @@ class Page {
 			'ashlin-react',
 			'ashlinReact',
 			array(
-				'title' => esc_html__( 'AshlinReact', 'ashlin-react' ),
+				'title_text'        => esc_html__( 'AshlinReact', 'ashlin-react' ),
+				'tab_table_text'    => esc_html__( 'Table', 'ashlin-react' ),
+				'tab_graph_text'    => esc_html__( 'Graph', 'ashlin-react' ),
+				'tab_settings_text' => esc_html__( 'Settings', 'ashlin-react' ),
 			)
 		);
 	}
