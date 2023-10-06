@@ -36,7 +36,7 @@ class Page {
 	 * Include javascript files
 	 * */
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'ashlin-react', ASHLIN_REACT_URL . 'dist/admin.js', array( 'wp-element' ), ASHLIN_REACT_VERSION, true );
+		wp_enqueue_script( 'ashlin-react', ASHLIN_REACT_URL . 'assets/js/admin.js', array( 'wp-element' ), ASHLIN_REACT_VERSION, true );
 		wp_localize_script(
 			'ashlin-react',
 			'ashlinReact',

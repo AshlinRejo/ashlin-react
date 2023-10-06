@@ -8,6 +8,7 @@ module.exports = {
         'react-dom': 'ReactDOM',
     },
     output: {
-        filename: 'admin.js'
+        filename: 'admin.js',
+        path: resolve( process.cwd(), 'assets/js' )
     },
 };
