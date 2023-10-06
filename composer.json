@@ -17,7 +17,7 @@
   },
   "autoload": {
 	"psr-4": {
-	  "AshlinReact\\": "src/"
+	  "AshlinReact\\": "app/"
 	}
   },
   "autoload-dev": {},

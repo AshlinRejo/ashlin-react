@@ -21,4 +21,6 @@
 	<arg name="basepath" value="./"/>
 
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/dist/*</exclude-pattern>
 </ruleset>

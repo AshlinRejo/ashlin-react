@@ -22,8 +22,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'ASHLIN_REACT_PATH', realpath( plugin_dir_path( __FILE__ ) ) . '/' );
+define( 'ASHLIN_REACT_URL', plugin_dir_url( __FILE__ ) );
 define( 'ASHLIN_REACT_PHP_VERSION', '7.2' );
 define( 'ASHLIN_REACT_WP_VERSION', '5.0' );
+define( 'ASHLIN_REACT_VERSION', '1.0.0' );
 
 require ASHLIN_REACT_PATH . 'inc/ashlin-react-requirement-checks.php';
 

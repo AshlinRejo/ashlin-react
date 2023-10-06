@@ -21,6 +21,21 @@ class Page {
 	 * */
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+	}
+
+	/**
+	 * Include javascript files
+	 * */
+	public function enqueue_scripts() {
+		wp_enqueue_script( 'ashlin-react', ASHLIN_REACT_URL . 'dist/admin.js', array( 'wp-element' ), ASHLIN_REACT_VERSION, true );
+		wp_localize_script(
+			'ashlin-react',
+			'ashlinReact',
+			array(
+				'title' => esc_html__( 'AshlinReact', 'ashlin-react' ),
+			)
+		);
 	}
 
 	/**
@@ -32,7 +47,7 @@ class Page {
 		}
 
 		add_menu_page(
-			__( 'WP Sitemap', 'ashlin-react' ),
+			esc_html__( 'AshlinReact', 'ashlin-react' ),
 			'AshlinReact',
 			'manage_options',
 			'ashlin-react',
