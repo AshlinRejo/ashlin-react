@@ -52,7 +52,7 @@ class Page {
 			'manage_options',
 			'ashlin-react',
 			array( $this, 'load_menu_content' ),
-			'',
+			'dashicons-chart-bar',
 			6
 		);
 	}

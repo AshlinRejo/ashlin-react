@@ -11,4 +11,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="wrap">
 	<div id="ashlin-react-app"></div>
+	<noscript><?php esc_html_e( 'JavaScript is not enabled! AshlinReact plugin requires JavaScript enabled to functional.', 'ashlin-react' ); ?></noscript>
 </div>
