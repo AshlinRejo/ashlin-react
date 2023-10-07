@@ -41,10 +41,31 @@ class Page {
 			'ashlin-react',
 			'ashlinReact',
 			array(
-				'title_text'        => esc_html__( 'AshlinReact', 'ashlin-react' ),
-				'tab_table_text'    => esc_html__( 'Table', 'ashlin-react' ),
-				'tab_graph_text'    => esc_html__( 'Graph', 'ashlin-react' ),
-				'tab_settings_text' => esc_html__( 'Settings', 'ashlin-react' ),
+				'title_text' => esc_html__( 'AshlinReact', 'ashlin-react' ),
+				'email'      => get_option( 'new_admin_email' ),
+				'tab'        => array(
+					'table_text'    => esc_html__( 'Table', 'ashlin-react' ),
+					'graph_text'    => esc_html__( 'Graph', 'ashlin-react' ),
+					'settings_text' => esc_html__( 'Settings', 'ashlin-react' ),
+				),
+				'settings'   => array(
+					'number_of_rows_in_table_text'       => esc_html__( 'Number of rows in table', 'ashlin-react' ),
+					'number_of_rows_in_table_desc_text'  => esc_html__( 'To set the number of rows to display in a table', 'ashlin-react' ),
+					'error_enter_number_between_one_and_five' => esc_html__( 'Enter number between 1 and 5.', 'ashlin-react' ),
+					'date_format_text'                   => esc_html__( 'Date format.', 'ashlin-react' ),
+					'date_format_desc_text'              => esc_html__( 'Display the table’s date column in human readable format or as a Unix timestamp.', 'ashlin-react' ),
+					'date_format_human_readable_text'    => esc_html__( 'Human readable format', 'ashlin-react' ),
+					'date_format_unix_timestamp_text'    => esc_html__( 'Unix timestamp', 'ashlin-react' ),
+					/* translators: %s: date in human readable format. */
+					'human_readable_format_preview_text' => sprintf( esc_html__( 'Preview: %s', 'ashlin-react' ), current_time( get_option( 'date_format', 'F j, Y' ) ) ),
+					/* translators: %s: date in unix timestamp. */
+					'timestamp_preview_text'             => sprintf( esc_html__( 'Preview: %s', 'ashlin-react' ), time() ),
+					'email_text'                         => esc_html__( 'Emails', 'ashlin-react' ),
+					'email_desc_text'                    => esc_html__( 'You can add upto 5 emails', 'ashlin-react' ),
+					'error_enter_an_email'               => esc_html__( 'Enter an email.', 'ashlin-react' ),
+					'add_email_button_text'              => esc_html__( 'Add', 'ashlin-react' ),
+					'save_button_text'                   => esc_html__( 'Save settings', 'ashlin-react' ),
+				),
 			)
 		);
 	}

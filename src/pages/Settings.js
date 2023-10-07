@@ -1,9 +1,10 @@
 import React from "react";
+import FormSettings from "../components/FormSettings";
 
 const Settings = () => {
     return (
-        <div>
-            Settings content.
+        <div id="ashlin-react-settings">
+            <FormSettings />
         </div>
     );
 };

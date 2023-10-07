@@ -23,3 +23,106 @@
 .ashlin-react-tab a:hover {
 	border-color: #999;
 }
+
+.ashlin-react-form-label {
+	width: 250px;
+	padding: 5px 5px 0 0;
+}
+
+.ashlin-react-form-label label {
+	font-weight: 700;
+}
+
+p.ashlin-react-form-field-error {
+	color: #d63638;
+}
+
+.ashlin-react-form-input.error {
+	border: 1px solid #d63638;
+}
+
+p.ashlin-react-form-label-desc {
+	font-style: italic;
+	color: #555;
+}
+
+div.ashlin-react-form-row {
+	border-bottom: 1px solid #e4e4e4;
+	display: flex;
+	padding: 25px 0;
+}
+
+span.ashlin-react-preview {
+	color: #888;
+	padding-left: 20px;
+}
+
+.ashlin-react-btn {
+	cursor: pointer;
+	padding: 8px 12px;
+	border: 0;
+	border-radius: 3px;
+	display: inline-block;
+	text-align: center;
+}
+
+.ashlin-react-remove-email-btn {
+	background-color: #dc3545;
+	color: #fff;
+}
+
+.ashlin-react-add-email-btn {
+	background-color: #738e9e;
+	color: #fff;
+}
+
+.ashlin-react-save-btn {
+	background-color: #e27730;
+	color: #fff;
+}
+
+.ashlin-react-add-email-btn:hover,
+.ashlin-react-add-email-btn:active,
+.ashlin-react-add-email-btn:focus {
+	background-color: #395360;
+}
+
+.ashlin-react-remove-email-btn:hover,
+.ashlin-react-remove-email-btn:active,
+.ashlin-react-remove-email-btn:focus {
+	background-color: #bb2d3b;
+}
+
+.ashlin-react-save-btn:hover,
+.ashlin-react-save-btn:active,
+.ashlin-react-save-btn:focus {
+	background-color: #b85a1b;
+}
+
+.ashlin-react-form-btn-block {
+	margin: 20px 0;
+}
+
+.ashlin-react-settings-from input[type="text"],
+.ashlin-react-settings-from input[type="number"] {
+	padding: 7px 12px;
+	margin: 0 10px 0 0;
+	width: 400px;
+	min-height: 35px;
+	line-height: 1.3;
+}
+
+.ashlin-react-email-block {
+	margin-bottom: 15px;
+}
+
+@media (max-width: 780px) {
+
+	div.ashlin-react-form-row {
+		display: block;
+	}
+
+	.ashlin-react-form-label {
+		width: 100%;
+	}
+}

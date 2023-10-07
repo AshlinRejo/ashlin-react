@@ -5,13 +5,13 @@ const Tabs = () => {
     return (
         <div className="ashlin-react-tab">
             <NavLink to={`/`} key={"table"}>
-                { ashlinReact.tab_table_text }
+                { ashlinReact.tab.table_text }
             </NavLink>
             <NavLink to={`/graph`} key={"graph"}>
-                { ashlinReact.tab_graph_text }
+                { ashlinReact.tab.graph_text }
             </NavLink>
             <NavLink to={`/settings`} key={"settings"}>
-                { ashlinReact.tab_settings_text }
+                { ashlinReact.tab.settings_text }
             </NavLink>
         </div>
     );
