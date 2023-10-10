@@ -37,7 +37,7 @@ const ChartLayout = () => {
 	const options = {
 		responsive: true,
 	};
-	// const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
 	const data = {
 		labels,
 		datasets: [
