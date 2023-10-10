@@ -1,4 +1,5 @@
 import React from 'react';
+import TableLayout from '../components/TableLayout';
 
 /**
  * To display content for Table tab.
@@ -6,6 +7,10 @@ import React from 'react';
  * @return Element
  */
 const Table = () => {
-	return <div>Table content.</div>;
+	return (
+		<div id="ashlin-react-table">
+			<TableLayout />
+		</div>
+	);
 };
 export default Table;

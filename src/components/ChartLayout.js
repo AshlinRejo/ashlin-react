@@ -65,12 +65,10 @@ const ChartLayout = () => {
 				if ( true === response.data.success ) {
 					const dates = [];
 					const values = [];
-					Object.values( response.data.data.graph ).forEach(
-						( graph ) => {
-							dates.push( graph.date );
-							values.push( graph.value );
-						}
-					);
+					Object.values( response.data.data ).forEach( ( graph ) => {
+						dates.push( graph.date );
+						values.push( graph.value );
+					} );
 					setLabels( dates );
 					setDataValues( values );
 				}

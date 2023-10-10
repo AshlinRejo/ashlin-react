@@ -78,6 +78,9 @@ class Page {
 					'graph'       => array(
 						'value_text' => esc_html__( 'Value', 'ashlin-react' ),
 					),
+					'table'       => array(
+						'emails_title_text' => esc_html__( 'Emails', 'ashlin-react' ),
+					),
 				)
 			);
 		}

@@ -160,6 +160,19 @@ div.ashlin-react-graph-container {
 	}
 }
 
+table.ashlin-react-table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+table.ashlin-react-table tr,
+table.ashlin-react-table td,
+table.ashlin-react-table th {
+	border: 1px solid #999;
+	padding: 10px;
+}
+
 @media (max-width: 780px) {
 
 	div.ashlin-react-form-row {
