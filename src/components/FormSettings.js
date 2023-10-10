@@ -273,9 +273,13 @@ const FormSettings = () => {
 	}
 
 	useEffect( () => {
-		window.onload = () => {
+		if ( 'undefined' === typeof wp.ajax ) {
+			window.onload = () => {
+				getSettings();
+			};
+		} else {
 			getSettings();
-		};
+		}
 	}, [] );
 
 	return (
