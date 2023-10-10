@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-10-10T11:30:05+00:00\n"
+"POT-Creation-Date: 2023-10-10T18:42:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: ashlin-react\n"
 
 #. Plugin Name of the plugin
 #: app/Admin/Page.php:50
-#: app/Admin/Page.php:92
+#: app/Admin/Page.php:95
 msgid "AshlinReact"
 msgstr ""
 
@@ -30,6 +30,16 @@ msgstr ""
 
 #. Author URI of the plugin
 msgid "https://github.com/AshlinRejo"
+msgstr ""
+
+#: app/Admin/Data.php:39
+#: app/Admin/Settings.php:49
+#: app/Admin/Settings.php:69
+msgid "Invalid access."
+msgstr ""
+
+#: app/Admin/Data.php:52
+msgid "Failed to retrieve from remote API."
 msgstr ""
 
 #: app/Admin/Page.php:53
@@ -53,7 +63,7 @@ msgid "To set the number of rows to display in a table"
 msgstr ""
 
 #: app/Admin/Page.php:60
-#: app/Admin/Settings.php:110
+#: app/Admin/Settings.php:116
 msgid "Enter number between 1 and 5."
 msgstr ""
 
@@ -109,36 +119,34 @@ msgid "Save settings"
 msgstr ""
 
 #: app/Admin/Page.php:76
-#: app/Admin/Settings.php:90
+#: app/Admin/Settings.php:96
 msgid "Failed to save."
 msgstr ""
 
-#: app/Admin/Settings.php:36
-#: app/Admin/Settings.php:63
-msgid "Invalid access."
+#: app/Admin/Page.php:79
+msgid "Value"
 msgstr ""
 
-#: app/Admin/Settings.php:52
+#: app/Admin/Settings.php:77
 #: app/Admin/Settings.php:85
-msgid "Updated successfully."
-msgstr ""
-
-#: app/Admin/Settings.php:71
-#: app/Admin/Settings.php:79
 msgid "Invalid request."
 msgstr ""
 
-#: app/Admin/Settings.php:113
-#: app/Admin/Settings.php:123
-#: app/Admin/Settings.php:137
+#: app/Admin/Settings.php:91
+msgid "Updated successfully."
+msgstr ""
+
+#: app/Admin/Settings.php:119
+#: app/Admin/Settings.php:129
+#: app/Admin/Settings.php:143
 msgid "Required."
 msgstr ""
 
-#: app/Admin/Settings.php:120
+#: app/Admin/Settings.php:126
 msgid "Invalid format."
 msgstr ""
 
-#: app/Admin/Settings.php:133
+#: app/Admin/Settings.php:139
 msgid "Invalid email."
 msgstr ""
 

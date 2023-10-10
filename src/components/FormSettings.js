@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ErrorMessage from './ErrorMessage';
 import SuccessMessage from './SuccessMessage';
+import Loader from './Loader';
 
 /* global ashlinReact */
 
@@ -284,14 +285,7 @@ const FormSettings = () => {
 
 	return (
 		<form className="ashlin-react-settings-from">
-			<div
-				className={
-					'ashlin-react-loader' +
-					( true === loading ? ' loading' : '' )
-				}
-			>
-				<span className="ashlin-react-loader-span"></span>
-			</div>
+			<Loader loading={ loading }></Loader>
 			<div id="ashlin-react-message">{ message }</div>
 			<div className="ashlin-react-form-row">
 				<div className="ashlin-react-form-label">

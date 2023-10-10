@@ -117,7 +117,8 @@ span.ashlin-react-preview {
 	margin-bottom: 15px;
 }
 
-form.ashlin-react-settings-from {
+form.ashlin-react-settings-from,
+div.ashlin-react-graph-container {
 	position: relative;
 }
 

@@ -75,6 +75,9 @@ class Page {
 						'save_button_text'                => esc_html__( 'Save settings', 'ashlin-react' ),
 						'failed_to_save'                  => esc_html__( 'Failed to save.', 'ashlin-react' ),
 					),
+					'graph'       => array(
+						'value_text' => esc_html__( 'Value', 'ashlin-react' ),
+					),
 				)
 			);
 		}

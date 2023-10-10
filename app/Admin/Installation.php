@@ -35,7 +35,7 @@ class Installation {
 		$settings = get_option( 'ashlin_react_settings' );
 		if ( false === $settings ) {
 			$default_settings = Settings::get_default_settings();
-			update_option( 'ashlin_react_settings', (object) $default_settings );
+			update_option( 'ashlin_react_settings', $default_settings );
 		}
 	}
 }

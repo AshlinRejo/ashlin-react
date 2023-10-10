@@ -1,4 +1,5 @@
 import React from 'react';
+import ChartLayout from '../components/ChartLayout';
 
 /**
  * To display content for Graph tab.
@@ -6,6 +7,10 @@ import React from 'react';
  * @return Element
  */
 const Graph = () => {
-	return <div>Graph content.</div>;
+	return (
+		<div id="ashlin-react-graph">
+			<ChartLayout />
+		</div>
+	);
 };
 export default Graph;

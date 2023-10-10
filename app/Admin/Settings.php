@@ -7,9 +7,6 @@
 
 namespace AshlinReact\Admin;
 
-use function Code_Snippets\Settings\sanitize_setting_value;
-use function Code_Snippets\Settings\sanitize_settings;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -24,13 +21,29 @@ class Settings {
 	 * */
 	public function hooks() {
 		add_action( 'wp_ajax_ashlin_react_save_settings', array( $this, 'save_settings' ) );
-		add_action( 'wp_ajax_ashlin_react_get_settings', array( $this, 'get_settings' ) );
+		add_action( 'wp_ajax_ashlin_react_get_settings', array( $this, 'get_settings_ajax' ) );
 	}
 
 	/**
 	 * Get settings from option table
 	 * */
 	public function get_settings() {
+		// Load settings from option table.
+		$settings = get_option( 'ashlin_react_settings' );
+
+		// Update default value if option doesn't exists.
+		if ( false === $settings ) {
+			$settings = self::get_default_settings();
+			update_option( 'ashlin_react_settings', $settings );
+		}
+
+		return $settings;
+	}
+
+	/**
+	 * Get settings from option table for ajax request.
+	 * */
+	public function get_settings_ajax() {
 		// Check user access.
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'Invalid access.', 'ashlin-react' ), 403 );
@@ -39,17 +52,10 @@ class Settings {
 		// Verify nonce.
 		check_ajax_referer( 'ashlin-react-ajax-nonce' );
 
-		$settings = get_option( 'ashlin_react_settings' );
-
-		// Update default value if option doesn't exists.
-		if ( false === $settings ) {
-			$settings = self::get_default_settings();
-			update_option( 'ashlin_react_settings', (object) $settings );
-		}
+		$settings = $this->get_settings();
 
 		$return_data = array(
 			'settings' => $settings,
-			'message'  => esc_html__( 'Updated successfully.', 'ashlin-react' ),
 		);
 		wp_send_json_success( $return_data );
 	}
@@ -150,10 +156,11 @@ class Settings {
 	 * @return array
 	 * */
 	public static function get_default_settings() {
-		return array(
-			'number_of_rows_in_table' => 5,
-			'date_format'             => 'human_readable',
-			'emails'                  => get_option( 'new_admin_email' ),
-		);
+		$settings                          = new \stdClass();
+		$settings->number_of_rows_in_table = 5;
+		$settings->date_format             = 'human_readable';
+		$settings->emails                  = get_option( 'new_admin_email' );
+
+		return $settings;
 	}
 }
