@@ -29,7 +29,7 @@
     "stylelint:fix": "npm run stylelint -- --fix",
     "eslint": "eslint src/*",
     "eslint:fix": "eslint --fix src/*",
-    "precommit": "composer run-script phpcs:fix && composer run-script stylelint:fix && composer run-script eslint:fix"
+    "precommit": "composer run-script phpcs:fix && composer run-script stylelint:fix && composer run-script eslint:fix && composer run-script make-pot"
   },
   "config": {
     "allow-plugins": {
