@@ -7,13 +7,14 @@ const FormSettings = () => {
     const defaultFieldValues = {
         'number_of_rows_in_table': 5,
         'date_format': 'human_readable',
-        'emails': 'ashlinrejo1@gmail.com',
+        'emails': '',
     };
 
     const [fieldErrors, setFieldErrors] = useState({});
     const [inputFields, setInputFields] = useState(defaultFieldValues);
     const [message, setMessage] = useState(<></>);
     const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     /**
      * Handle on-change event for field number_of_rows_in_table.
@@ -101,6 +102,7 @@ const FormSettings = () => {
             data.append( 'action', 'ashlin_react_save_settings' );
             data.append( '_ajax_nonce', ashlinReact._ajax_nonce );
             data.append( 'settings', JSON.stringify(inputFields) );
+            setLoading(true);
             // Post request
             axios.post(wp.ajax.settings.url, data)
                 .then(function (response) {
@@ -120,6 +122,7 @@ const FormSettings = () => {
                 })
                 .finally(function () {
                     setButtonDisabled(false);
+                    setLoading(false);
                 });
         }
     }
@@ -177,10 +180,42 @@ const FormSettings = () => {
         return false;
     }
 
-    useEffect(() => {}, []);
+    /**
+     * To get settings from DB
+    * */
+    function getSettings(){
+        axios.get(wp.ajax.settings.url, {
+            params: {
+                action: 'ashlin_react_get_settings',
+                _ajax_nonce: ashlinReact._ajax_nonce
+            }
+        })
+            .then(function (response) {
+                if(true === response.data.success){
+                    setInputFields(response.data.data.settings);
+                }
+            }).catch(function (error) {
+                if(error?.response?.data && "string" === typeof error.response.data){
+                    setMessage(<ErrorMessage message={ error.response.data }></ErrorMessage>);
+                } else {
+                    setMessage(<ErrorMessage message={ error.message }></ErrorMessage>);
+                }
+            }).finally(function () {
+                setLoading(false);
+            });
+    }
+
+    useEffect(() => {
+        window.onload = () => {
+            getSettings();
+        }
+    }, []);
 
     return (
         <form className="ashlin-react-settings-from">
+            <div className={"ashlin-react-loader"+ ( true === loading ? ' loading': '' )}>
+                <span className="ashlin-react-loader-span"></span>
+            </div>
             <div id="ashlin-react-message">{message}</div>
             <div className="ashlin-react-form-row">
                 <div className="ashlin-react-form-label">

@@ -24,6 +24,34 @@ class Settings {
 	 * */
 	public function hooks() {
 		add_action( 'wp_ajax_ashlin_react_save_settings', array( $this, 'save_settings' ) );
+		add_action( 'wp_ajax_ashlin_react_get_settings', array( $this, 'get_settings' ) );
+	}
+
+	/**
+	 * Get settings from option table
+	 * */
+	public function get_settings() {
+		// Check user access.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Invalid access.', 'ashlin-react' ), 403 );
+		}
+
+		// Verify nonce.
+		check_ajax_referer( 'ashlin-react-ajax-nonce' );
+
+		$settings = get_option( 'ashlin_react_settings' );
+
+		// Update default value if option doesn't exists.
+		if ( false === $settings ) {
+			$settings = self::get_default_settings();
+			update_option( 'ashlin_react_settings', (object) $settings );
+		}
+
+		$return_data = array(
+			'settings' => $settings,
+			'message'  => esc_html__( 'Updated successfully.', 'ashlin-react' ),
+		);
+		wp_send_json_success( $return_data );
 	}
 
 	/**
