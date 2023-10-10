@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const ErrorMessage = ({message}) => {
-    return (
-        <div className="notice notice-error">
-            <p>
-               { message }
-            </p>
-        </div>
-    );
+/**
+ * To display error message
+ *
+ * @param {string} message Message to display.
+ * @return Element
+ */
+const ErrorMessage = ( { message } ) => {
+	return (
+		<div className="notice notice-error">
+			<p>{ message }</p>
+		</div>
+	);
 };
 export default ErrorMessage;

@@ -7,14 +7,18 @@
     "start": "wp-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stylelint": "stylelint 'assets/css/*'",
-    "stylelint:fix": "npm run stylelint -- --fix"
+    "stylelint:fix": "npm run stylelint -- --fix",
+    "eslint": "eslint src/*",
+    "eslint:fix": "eslint --fix src/*"
   },
   "devDependencies": {
     "@wordpress/scripts": "^24.1.0",
+    "eslint": "^8.51.0",
     "stylelint": "^15.10.3"
   },
   "dependencies": {
     "axios": "^1.5.1",
+    "react": "^18.2.0",
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0"
   }

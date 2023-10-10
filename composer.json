@@ -27,7 +27,9 @@
     "phpcs:fix": "vendor/bin/phpcbf",
     "stylelint": "stylelint 'assets/css/*'",
     "stylelint:fix": "npm run stylelint -- --fix",
-    "precommit": "composer run-script phpcs:fix && composer run-script stylelint:fix"
+    "eslint": "eslint src/*",
+    "eslint:fix": "eslint --fix src/*",
+    "precommit": "composer run-script phpcs:fix && composer run-script stylelint:fix && composer run-script eslint:fix"
   },
   "config": {
     "allow-plugins": {
