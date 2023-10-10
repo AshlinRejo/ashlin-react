@@ -7,8 +7,6 @@
 
 namespace AshlinReact\Admin;
 
-use PhpParser\Node\Expr\Cast\Object_;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
