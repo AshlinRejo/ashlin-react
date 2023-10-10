@@ -7,6 +7,8 @@
 
 namespace AshlinReact\Admin;
 
+use PhpParser\Node\Expr\Cast\Object_;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -30,5 +32,10 @@ class Installation {
 	 * Add default option values if required
 	 * */
 	private function add_default_options() {
+		$settings = get_option( 'ashlin_react_settings' );
+		if ( false === $settings ) {
+			$default_settings = Settings::get_default_settings();
+			update_option( 'ashlin_react_settings', (object) $default_settings );
+		}
 	}
 }

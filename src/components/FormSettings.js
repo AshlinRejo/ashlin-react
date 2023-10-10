@@ -1,13 +1,19 @@
 import React, { useEffect, useState} from "react";
+import axios from "axios";
+import ErrorMessage from "./ErrorMessage";
+import SuccessMessage from "./SuccessMessage";
 
 const FormSettings = () => {
-    const defaultFieldValues = [];
-    defaultFieldValues['number_of_rows_in_table'] = 5;
-    defaultFieldValues['date_format'] = 'human_readable';
-    defaultFieldValues['emails'] = 'ashlinrejo1@gmail.com'//ashlinReact.settings.email;
+    const defaultFieldValues = {
+        'number_of_rows_in_table': 5,
+        'date_format': 'human_readable',
+        'emails': 'ashlinrejo1@gmail.com',
+    };
 
-    const [fieldErrors, setFieldErrors] = useState([]);
+    const [fieldErrors, setFieldErrors] = useState({});
     const [inputFields, setInputFields] = useState(defaultFieldValues);
+    const [message, setMessage] = useState(<></>);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
     /**
      * Handle on-change event for field number_of_rows_in_table.
@@ -19,7 +25,7 @@ const FormSettings = () => {
         let value   = event.target.value;
         if( '' === value.trim() || null === value.trim() ){
             value   = '';
-            updateError( 'number_of_rows_in_table', ashlinReact.settings.error_enter_number_between_one_and_five );
+            setFieldErrors({ ...fieldErrors, 'number_of_rows_in_table': ashlinReact.settings.error_enter_number_between_one_and_five });
         } else if( Number(value) < 1 ) {
             value   = 1;
         } else if(Number(value) > 5) {
@@ -36,7 +42,7 @@ const FormSettings = () => {
      * */
     function handleOnChange(event, fieldName) {
         let value = event.target.value;
-        updateError( fieldName, '' );
+        setFieldErrors({ ...fieldErrors, [fieldName]: '' });
         switch (fieldName){
             case 'number_of_rows_in_table':
                 value = handleNumberOfRowsInputOnChange(event);
@@ -55,25 +61,20 @@ const FormSettings = () => {
      * @param index number
      * */
     function handleEmailOnChange(event, index) {
-        let splitedEmails = inputFields['emails'].split(',');
+        let splitedEmails = inputFields.emails.split(',');
         let value = event.target.value;
-        if( '' === value.trim() || null === value.trim() ){
-            value   = '';
-            updateError( 'email_' + index, ashlinReact.settings.error_enter_an_email );
-        } else {
-            updateError( 'email_' + index, '' );
-        }
         splitedEmails[index] = value;
-        updateInputFieldState( 'emails', splitedEmails.toString() );
+        setFieldErrors({ ...fieldErrors, ['email_' + index]: '' });
+        setInputFields({ ...inputFields, 'emails': splitedEmails.toString() });
     }
 
     /**
      * Add an email field.
      * */
     function addEmailField(){
-        let splitedEmails = inputFields['emails'].split(',');
+        let splitedEmails = inputFields.emails.split(',');
         splitedEmails.push('');
-        updateInputFieldState( 'emails', splitedEmails.toString() );
+        setInputFields({ ...inputFields, 'emails': splitedEmails.toString() });
     }
 
     /**
@@ -82,37 +83,85 @@ const FormSettings = () => {
      * @param index number
      * */
     function removeEmailField(index){
-        let splitedEmails = inputFields['emails'].split(',');
+        let splitedEmails = inputFields.emails.split(',');
         delete splitedEmails[index];
         splitedEmails = splitedEmails.filter( ( function() { return true; } ) );
-        updateInputFieldState( 'emails', splitedEmails.toString() );
-    }
-
-    /**
-     * Update state for Input fields.
-     *
-     * @param key string
-     * @param value string
-     * */
-    function updateInputFieldState(key, value){
-        let updateInputFields = { ...inputFields, [key]: value };
-        setInputFields(updateInputFields);
+        setInputFields({ ...inputFields, 'emails': splitedEmails.toString() });
     }
 
     /**
      * Save form
     * */
-    function saveSettings(){}
+    function saveSettings(){
+        setMessage(<></>);
+        let validationStatus = validateFormFields();
+        if(true === validationStatus){
+            setButtonDisabled(true);
+            const data = new FormData();
+            data.append( 'action', 'ashlin_react_save_settings' );
+            data.append( '_ajax_nonce', ashlinReact._ajax_nonce );
+            data.append( 'settings', JSON.stringify(inputFields) );
+            // Post request
+            axios.post(wp.ajax.settings.url, data)
+                .then(function (response) {
+                    if(true === response.data.success){
+                        setMessage(<SuccessMessage message={ response.data.data.message }></SuccessMessage>);
+                    } else {
+                        setMessage(<ErrorMessage message={ response.data.data.message }></ErrorMessage>);
+                        setFieldErrors(response.data.data.errors);
+                    }
+                })
+                .catch(function (error) {
+                    if(error?.response?.data && "string" === typeof error.response.data){
+                        setMessage(<ErrorMessage message={ error.response.data }></ErrorMessage>);
+                    } else {
+                        setMessage(<ErrorMessage message={ error.message }></ErrorMessage>);
+                    }
+                })
+                .finally(function () {
+                    setButtonDisabled(false);
+                });
+        }
+    }
 
     /**
-     * Update error state
-     *
-     * @param fieldName string
-     * @param value any
+     * Validate form fields
     * */
-    function updateError(fieldName, value) {
-        let updatedErrors = { ...fieldErrors, [fieldName]: value };
-        setFieldErrors(updatedErrors);
+    function validateFormFields(){
+        let status = true;
+        let error = {};
+        // Validate number_of_rows_in_table
+        const numberOfRows = inputFields.number_of_rows_in_table;
+        if( Number(numberOfRows) < 1 || Number(numberOfRows) > 5 ){
+            status   = false;
+            error = { ...error, 'number_of_rows_in_table': ashlinReact.settings.error_enter_number_between_one_and_five };
+        }
+
+        // Validate date_format
+        const dateFormat = inputFields.date_format;
+        const dateFormatAcceptedValues = ["human_readable", "unix_timestamp"];
+        if( false === dateFormatAcceptedValues.includes(dateFormat) ){
+            status   = false;
+            error = { ...error, 'date_format': ashlinReact.settings.error_invalid_input };
+        }
+
+        // Validate emails
+        const emails = inputFields.emails;
+        // Accepts only string, numbers and characters like ._-
+        var validRegex =  /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let splitedEmails = inputFields.emails.split(',');
+        splitedEmails.map((email,  index) => {
+            if( '' === email.trim() || null === email.trim() ){
+                status   = false;
+                error = { ...error, ['email_' + index]: ashlinReact.settings.error_enter_an_email };
+            } else if (!email.match(validRegex)) {
+                status   = false;
+                error = { ...error, ['email_' + index]: ashlinReact.settings.error_enter_valid_email };
+            }
+        });
+        setFieldErrors(error);
+
+        return status;
     }
 
     /**
@@ -132,6 +181,7 @@ const FormSettings = () => {
 
     return (
         <form className="ashlin-react-settings-from">
+            <div id="ashlin-react-message">{message}</div>
             <div className="ashlin-react-form-row">
                 <div className="ashlin-react-form-label">
                     <label htmlFor="ashlin-react-number-of-rows-in-table">{ ashlinReact.settings.number_of_rows_in_table_text }</label>
@@ -140,10 +190,10 @@ const FormSettings = () => {
                 <div className="ashlin-react-form-field">
                     <input type="number" min="1" max="5" id="ashlin-react-number-of-rows-in-table" name="number_of_rows_in_table"
                            className={ "ashlin-react-form-input" + ( true === hasError( 'number_of_rows_in_table' ) ? ' error': '' ) }
-                           value={ inputFields['number_of_rows_in_table'] }
+                           value={ inputFields.number_of_rows_in_table }
                            onChange={ (event) => { handleOnChange( event, 'number_of_rows_in_table'); } } />
                     { true === hasError( 'number_of_rows_in_table' ) && (
-                        <p className="ashlin-react-form-field-error">{ fieldErrors['number_of_rows_in_table'] }</p>
+                        <p className="ashlin-react-form-field-error">{ fieldErrors.number_of_rows_in_table }</p>
                     ) }
                 </div>
             </div>
@@ -157,19 +207,19 @@ const FormSettings = () => {
                     <label htmlFor="ashlin-react-date-format-1">
                         <input type="radio" id="ashlin-react-date-format-1" name="date_format" value="human_readable"
                                onChange={ (event) => { handleOnChange( event, 'date_format'); } }
-                               checked={ 'human_readable' === inputFields['date_format'] } />
+                               checked={ 'human_readable' === inputFields.date_format } />
                         { ashlinReact.settings.date_format_human_readable_text }
                     </label> <span className="ashlin-react-preview">{ ashlinReact.settings.human_readable_format_preview_text }</span>
                     <br /><br />
                     <label htmlFor="ashlin-react-date-format-2">
                         <input type="radio" id="ashlin-react-date-format-2" name="date_format" value="unix_timestamp"
                                onChange={ (event) => { handleOnChange( event, 'date_format'); } }
-                               checked={ 'unix_timestamp' === inputFields['date_format'] } />
+                               checked={ 'unix_timestamp' === inputFields.date_format } />
                         { ashlinReact.settings.date_format_unix_timestamp_text }
                     </label>
                     <span className="ashlin-react-preview">{ ashlinReact.settings.timestamp_preview_text }</span>
                     { true === hasError( 'date_format' ) && (
-                        <p className="ashlin-react-form-field-error">{ fieldErrors['date_format'] }</p>
+                        <p className="ashlin-react-form-field-error">{ fieldErrors.date_format }</p>
                     ) }
                 </div>
             </div>
@@ -180,29 +230,30 @@ const FormSettings = () => {
                     <p className="ashlin-react-form-label-desc">{ ashlinReact.settings.email_desc_text }</p>
                 </div>
                 <div className="ashlin-react-form-field">
-                    {inputFields['emails'].split(',').map((email,  index) => (
+                    {inputFields.emails.split(',').map((email,  index) => (
                         <div className="ashlin-react-email-block">
                             <input type="text" id={ "ashlin-react-email-" + index } name={ "email_" + index }
                                    className={ "ashlin-react-form-input" + ( true === hasError( "email_" + index ) ? ' error': '' ) }
                                    value={ email }
                                    onChange={ (event) => { handleEmailOnChange( event, index); } } />
-                            { 1 !== inputFields['emails'].split(',').length && (
+                            { 1 !== inputFields.emails.split(',').length && (
                                 <button type="button" className="ashlin-react-remove-email-btn ashlin-react-btn" onClick={ (event) => { removeEmailField( index ); } }>X</button>
                             ) }
-                            { true === hasError( "email_" + index ) && (
+
+                                           { true === hasError( "email_" + index ) && (
                                 <p className="ashlin-react-form-field-error">{ fieldErrors["email_" + index] }</p>
                             ) }
                         </div>
                     ))
                     }
-                    { inputFields['emails'].split(',').length < 5 && (
+                    { inputFields.emails.split(',').length < 5 && (
                         <button type="button" className="ashlin-react-add-email-btn ashlin-react-btn" onClick={addEmailField}>{ashlinReact.settings.add_email_button_text}</button>
                     ) }
                 </div>
             </div>
 
             <div className="ashlin-react-form-btn-block">
-                <button type="button" className="ashlin-react-save-btn ashlin-react-btn" onClick={saveSettings}>{ashlinReact.settings.save_button_text}</button>
+                <button type="button" disabled={buttonDisabled} className="ashlin-react-save-btn ashlin-react-btn" onClick={saveSettings}>{ashlinReact.settings.save_button_text}</button>
             </div>
         </form>
     );

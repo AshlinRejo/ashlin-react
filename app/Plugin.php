@@ -62,6 +62,7 @@ class Plugin {
 	private function register_events() {
 		$event_classes = array(
 			'\AshlinReact\Admin\Page',
+			'\AshlinReact\Admin\Settings',
 		);
 		foreach ( $event_classes as $event_class ) {
 			( new $event_class() )->hooks();
