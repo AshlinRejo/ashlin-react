@@ -26,6 +26,6 @@ trait Ashlin_React_Test_Set_Up {
 
 		// Set current user as 'Ashlin' so this user will have capability 'manage_options'.
 		wp_set_current_user( $user_id );
-		update_option( 'new_admin_email', 'ashlin@test.com' );
+		update_option( 'admin_email', 'ashlin@test.com' );
 	}
 }

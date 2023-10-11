@@ -50,7 +50,7 @@ class Page {
 				array(
 					'_ajax_nonce' => wp_create_nonce( 'ashlin-react-ajax-nonce' ),
 					'title_text'  => esc_html__( 'AshlinReact', 'ashlin-react' ),
-					'email'       => get_option( 'new_admin_email' ),
+					'email'       => get_option( 'admin_email' ),
 					'tab'         => array(
 						'table_text'    => esc_html__( 'Table', 'ashlin-react' ),
 						'graph_text'    => esc_html__( 'Graph', 'ashlin-react' ),

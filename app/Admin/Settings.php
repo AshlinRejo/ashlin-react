@@ -161,7 +161,7 @@ class Settings {
 		$settings                          = new \stdClass();
 		$settings->number_of_rows_in_table = 5;
 		$settings->date_format             = 'human_readable';
-		$settings->emails                  = get_option( 'new_admin_email' );
+		$settings->emails                  = get_option( 'admin_email' );
 
 		return $settings;
 	}
