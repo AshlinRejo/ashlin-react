@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-10-10T20:19:29+00:00\n"
+"POT-Creation-Date: 2023-10-11T04:31:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: ashlin-react\n"
 
 #. Plugin Name of the plugin
-#: app/Admin/Page.php:50
-#: app/Admin/Page.php:98
+#: app/Admin/Page.php:52
+#: app/Admin/Page.php:100
 msgid "AshlinReact"
 msgstr ""
 
@@ -32,122 +32,122 @@ msgstr ""
 msgid "https://github.com/AshlinRejo"
 msgstr ""
 
-#: app/Admin/Data.php:39
-#: app/Admin/Settings.php:49
-#: app/Admin/Settings.php:69
+#: app/Admin/Data.php:41
+#: app/Admin/Settings.php:51
+#: app/Admin/Settings.php:71
 msgid "Invalid access."
 msgstr ""
 
-#: app/Admin/Data.php:54
+#: app/Admin/Data.php:56
 msgid "Failed to retrieve from remote API."
 msgstr ""
 
-#: app/Admin/Page.php:53
+#: app/Admin/Page.php:55
 msgid "Table"
 msgstr ""
 
-#: app/Admin/Page.php:54
+#: app/Admin/Page.php:56
 msgid "Graph"
 msgstr ""
 
-#: app/Admin/Page.php:55
+#: app/Admin/Page.php:57
 msgid "Settings"
 msgstr ""
 
-#: app/Admin/Page.php:58
+#: app/Admin/Page.php:60
 msgid "Number of rows in table"
 msgstr ""
 
-#: app/Admin/Page.php:59
+#: app/Admin/Page.php:61
 msgid "To set the number of rows to display in a table"
 msgstr ""
 
-#: app/Admin/Page.php:60
-#: app/Admin/Settings.php:116
+#: app/Admin/Page.php:62
+#: app/Admin/Settings.php:118
 msgid "Enter number between 1 and 5."
 msgstr ""
 
-#: app/Admin/Page.php:61
+#: app/Admin/Page.php:63
 msgid "Date format."
 msgstr ""
 
-#: app/Admin/Page.php:62
+#: app/Admin/Page.php:64
 msgid "Display the table’s date column in human readable format or as a Unix timestamp."
 msgstr ""
 
-#: app/Admin/Page.php:63
+#: app/Admin/Page.php:65
 msgid "Human readable format"
 msgstr ""
 
-#: app/Admin/Page.php:64
+#: app/Admin/Page.php:66
 msgid "Unix timestamp"
 msgstr ""
 
-#: app/Admin/Page.php:65
+#: app/Admin/Page.php:67
 msgid "Invalid input"
 msgstr ""
 
 #. translators: %s: date in human readable format.
 #. translators: %s: date in unix timestamp.
-#: app/Admin/Page.php:67
 #: app/Admin/Page.php:69
+#: app/Admin/Page.php:71
 msgid "Preview: %s"
 msgstr ""
 
-#: app/Admin/Page.php:70
-#: app/Admin/Page.php:82
+#: app/Admin/Page.php:72
+#: app/Admin/Page.php:84
 msgid "Emails"
 msgstr ""
 
-#: app/Admin/Page.php:71
+#: app/Admin/Page.php:73
 msgid "You can add upto 5 emails"
 msgstr ""
 
-#: app/Admin/Page.php:72
+#: app/Admin/Page.php:74
 msgid "Enter an email."
 msgstr ""
 
-#: app/Admin/Page.php:73
+#: app/Admin/Page.php:75
 msgid "Enter a valid email."
 msgstr ""
 
-#: app/Admin/Page.php:74
+#: app/Admin/Page.php:76
 msgid "Add"
 msgstr ""
 
-#: app/Admin/Page.php:75
+#: app/Admin/Page.php:77
 msgid "Save settings"
 msgstr ""
 
-#: app/Admin/Page.php:76
-#: app/Admin/Settings.php:96
+#: app/Admin/Page.php:78
+#: app/Admin/Settings.php:98
 msgid "Failed to save."
 msgstr ""
 
-#: app/Admin/Page.php:79
+#: app/Admin/Page.php:81
 msgid "Value"
 msgstr ""
 
-#: app/Admin/Settings.php:77
-#: app/Admin/Settings.php:85
+#: app/Admin/Settings.php:79
+#: app/Admin/Settings.php:87
 msgid "Invalid request."
 msgstr ""
 
-#: app/Admin/Settings.php:91
+#: app/Admin/Settings.php:93
 msgid "Updated successfully."
 msgstr ""
 
-#: app/Admin/Settings.php:119
-#: app/Admin/Settings.php:129
-#: app/Admin/Settings.php:143
+#: app/Admin/Settings.php:121
+#: app/Admin/Settings.php:131
+#: app/Admin/Settings.php:145
 msgid "Required."
 msgstr ""
 
-#: app/Admin/Settings.php:126
+#: app/Admin/Settings.php:128
 msgid "Invalid format."
 msgstr ""
 
-#: app/Admin/Settings.php:139
+#: app/Admin/Settings.php:141
 msgid "Invalid email."
 msgstr ""
 

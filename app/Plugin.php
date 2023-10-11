@@ -8,6 +8,7 @@
 namespace AshlinReact;
 
 use AshlinReact\Admin\Installation;
+use AshlinReact\Helper\Common;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -81,7 +82,7 @@ class Plugin {
 	 * While activate plugin
 	 * */
 	public function plugin_activated() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! Common::is_administrator() ) {
 			return;
 		}
 		( new Installation() )->process_plugin_installation();

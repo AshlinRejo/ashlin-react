@@ -7,6 +7,8 @@
 
 namespace AshlinReact\Admin;
 
+use AshlinReact\Helper\Common;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -45,7 +47,7 @@ class Settings {
 	 * */
 	public function get_settings_ajax() {
 		// Check user access.
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! Common::is_administrator() ) {
 			wp_die( esc_html__( 'Invalid access.', 'ashlin-react' ), 403 );
 		}
 
@@ -65,7 +67,7 @@ class Settings {
 	 * */
 	public function save_settings() {
 		// Check user access.
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! Common::is_administrator() ) {
 			wp_die( esc_html__( 'Invalid access.', 'ashlin-react' ), 403 );
 		}
 

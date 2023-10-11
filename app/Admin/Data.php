@@ -7,6 +7,8 @@
 
 namespace AshlinReact\Admin;
 
+use AshlinReact\Helper\Common;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -35,7 +37,7 @@ class Data {
 	 * */
 	public function get_data() {
 		// Check user access.
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! Common::is_administrator() ) {
 			wp_die( esc_html__( 'Invalid access.', 'ashlin-react' ), 403 );
 		}
 

@@ -7,6 +7,8 @@
 
 namespace AshlinReact\Admin;
 
+use AshlinReact\Helper\Common;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -109,7 +111,7 @@ class Page {
 	 * Admin menu content
 	 * */
 	public function load_menu_content() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! Common::is_administrator() ) {
 			return;
 		}
 		include_once 'templates/dashboard.php';
