@@ -155,7 +155,7 @@ class Settings {
 	/**
 	 * Get default settings
 	 *
-	 * @return array
+	 * @return object
 	 * */
 	public static function get_default_settings() {
 		$settings                          = new \stdClass();
