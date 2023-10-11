@@ -36,5 +36,7 @@ tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 
+require_once dirname( __DIR__ ) . '/tests/traits/includes.php';
+
 // Start up the WP testing environment.
 require "{$_tests_dir}/includes/bootstrap.php";
